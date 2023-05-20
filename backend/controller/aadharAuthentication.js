@@ -11,4 +11,5 @@ const registerNRI = asyncHandler(async (req, res) => {
 
 //Current
 
+
 module.exports = { loginNRI, registerNRI };
