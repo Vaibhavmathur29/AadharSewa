@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const authSchema = new mongoose.Schema({
   passportNumber: {
     type: String,
@@ -47,8 +46,13 @@ const authSchema = new mongoose.Schema({
         "Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, one numeric value, and a maximum of one special character",
     },
   },
+
+  Email: {
+    type: String,
+    required: true,
+  },
 });
 
-const User = mongoose.model("Passport", authSchema);
+const authUser = mongoose.model("Passport", authSchema);
 
-module.exports = User;
+module.exports = authUser;

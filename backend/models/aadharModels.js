@@ -22,7 +22,7 @@ const aadharSchema = new Schema({
   }
 });
 
-const User = mongoose.model("Aadhar", aadharSchema);
+const aadharUser = mongoose.model("Aadhar", aadharSchema);
 
-module.exports = User;
+module.exports = aadharUser;
 
