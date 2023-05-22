@@ -5,6 +5,15 @@ const authSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    validate: {
+      validator: function (value) {
+        // Passport number must be a 6-digit string with 2 uppercase alphabets and 4 numeric values
+        return /^[A-Z]{2}[0-9]{4}$/.test(value);
+      },
+      message:
+        "Passport number must be a 6-digit string with 2 uppercase alphabets and 4 numeric values",
+    },
+  
   },
   Password: {
     type: String,
