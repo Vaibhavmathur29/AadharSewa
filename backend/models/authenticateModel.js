@@ -13,46 +13,20 @@ const authSchema = new mongoose.Schema({
       message:
         "Passport number must be a 6-digit string with 2 uppercase alphabets and 4 numeric values",
     },
-  
   },
   Password: {
+   
     type: String,
     required: true,
+    minlength: 6,
     validate: {
       validator: function (value) {
-        // Password must be at least 6 characters long
-        if (value.length < 6) {
-          return false;
-        }
-
-        // At least one uppercase letter
-        if (!/[A-Z]/.test(value)) {
-          return false;
-        }
-
-        // At least one lowercase letter
-        if (!/[a-z]/.test(value)) {
-          return false;
-        }
-
-        // Max one special character
-        if (
-          /[!@#$%^&*()\-=_+[\]{};':"\\|,.<>/?]+.*[!@#$%^&*()\-=_+[\]{};':"\\|,.<>/?]/.test(
-            value
-          )
-        ) {
-          return false;
-        }
-
-        // At least one numeric value
-        if (!/\d/.test(value)) {
-          return false;
-        }
-
-        return true;
+        // Password must have at least one uppercase letter, one lowercase letter, one numeric value,
+        // and can have at most one special character
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{6,}$/.test(value);
       },
       message:
-        "Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, one numeric value, and a maximum of one special character",
+        "Password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, one numeric value, and can have at most one special character",
     },
   },
 

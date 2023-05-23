@@ -26,6 +26,20 @@ const registerNRI = asyncHandler(async (req, res) => {
   //Hashed Password
   const hashPassword = await bcrypt.hash(Password, 10);
   console.log("Hashed Password is:", hashPassword);
+  const NRI=await authUser.create({
+    passportNumber,
+    Password:hashPassword,
+    Email
+  })
+  if(NRI){
+    res.status(201).json({Email:NRI.Email})
+  }
+  else{
+    res.status(400)
+    throw new Error ("User data not valid")
+  }
+  console.log(`User created ${NRI}`)
+
   //All fine
   res.json({ Message: "Welcome to Aadhar Seva Mr. NRI" });
 });
