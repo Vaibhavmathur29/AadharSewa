@@ -11,7 +11,9 @@ const validateToken = asyncHandler(async (req, res, next) => {
 
         
       }
-      console.log(decoded);
+      // console.log(decoded);
+      req.Indian=decoded.Indian;
+      next()
     });
     if (!token) {
       return res.status(401).json({Message:"NRI not allowed"});
