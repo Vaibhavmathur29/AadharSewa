@@ -78,5 +78,8 @@ const loginNRI = asyncHandler(async (req, res) => {
 });
 
 //Current
+const currentUser=asyncHandler(async(req,res)=>{
+  res.json({Message:"Current user info"})
+})
 
-module.exports = { loginNRI, registerNRI };
+module.exports = { loginNRI, registerNRI,currentUser};
